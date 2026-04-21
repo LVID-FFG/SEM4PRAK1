@@ -1,6 +1,9 @@
 #pragma once
 #include "../../data/Database.h"
 using namespace std;
+
+//hash<string> hasher;
+
 //Сервис аутентификации
 class AuthService {
 private:
@@ -29,7 +32,7 @@ public:
         }
         
         // для простоты сравниваем с хранимым значением (без хэширования)
-        bool valid = (user.value().getPassword() == password);
+        bool valid = (user.value().getPassword() == hasher(password));
         
         if (valid) {
             cout << "[СЕРВЕР ПРИЛОЖЕНИЙ] Аутентификация успешна" << endl;

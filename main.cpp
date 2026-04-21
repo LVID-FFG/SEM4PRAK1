@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <limits>
-#include "presentation/WebUI.h"
+#include "presentation/AdminUI.h"
 #include "presentation/TurnUI.h"
 using namespace std;
 
@@ -9,7 +9,7 @@ using namespace std;
  * Главное консольное меню — позволяет выбирать, от имени какого пользователя
  * работает оператор: сотрудник у турникета, охранник/администратор.
  * 
- * Это НЕ слой представления системы, а просто способ управления моделью.
+ * Это  слой представления системы, а просто способ управления моделью.
  */
 class MainMenu {
 private:

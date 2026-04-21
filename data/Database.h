@@ -255,9 +255,14 @@ public:
     
     optional<User> findUserByLogin(const string& login) {
         for (const auto& item : usersData) {
-            if (item["login"] == login) {
-                User user(item["login"], item["password"], item["role"]);
-                user.setActive(item["active"]);
+            if (item.contains("login") && item["login"].is_string() && item["login"].get<string>() == login) {
+                string Login = item["login"].get<string>();
+                size_t Hash  = item["password"].get<size_t>();
+                string Role  = item["role"].get<string>();
+                bool Active  = item["active"].get<bool>();
+
+                User user(Login, Hash, Role, Active);
+
                 cout << "[БАЗА ДАННЫХ] Пользователь найден: " << login << endl;
                 return user;
             }
@@ -265,6 +270,7 @@ public:
         cout << "[БАЗА ДАННЫХ] Пользователь не найден: " << login << endl;
         return nullopt;
     }
+
     
     bool saveUser(const User& user) {
         for (const auto& item : usersData) {
